@@ -10,8 +10,13 @@ import Foundation
 
 struct Player {
     
-    var balance = 10
-    var iceCubes = 1
-    var lemons = 1
+    var balance = 0
+    var iceCubes = 0
+    var lemons = 0
+    init (aBalance: Int, aIceCubes: Int, aLemons : Int) {
+        balance = aBalance
+        iceCubes = aIceCubes
+        lemons = aLemons
+    }
     
 }

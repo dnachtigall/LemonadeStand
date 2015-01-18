@@ -15,6 +15,7 @@
 		30344B361A62EEB200E46D5C /* LemonadeStandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30344B351A62EEB200E46D5C /* LemonadeStandTests.swift */; };
 		30BD89381A6BDC0100809DE7 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD89371A6BDC0100809DE7 /* Player.swift */; };
 		30BD893A1A6BEF6B00809DE7 /* Brain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD89391A6BEF6B00809DE7 /* Brain.swift */; };
+		30BD893C1A6C015300809DE7 /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD893B1A6C015300809DE7 /* Price.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		30344B351A62EEB200E46D5C /* LemonadeStandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemonadeStandTests.swift; sourceTree = "<group>"; };
 		30BD89371A6BDC0100809DE7 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		30BD89391A6BEF6B00809DE7 /* Brain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brain.swift; sourceTree = "<group>"; };
+		30BD893B1A6C015300809DE7 /* Price.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				30344B211A62EEB100E46D5C /* ViewController.swift */,
 				30BD89391A6BEF6B00809DE7 /* Brain.swift */,
 				30BD89371A6BDC0100809DE7 /* Player.swift */,
+				30BD893B1A6C015300809DE7 /* Price.swift */,
 				30344B231A62EEB100E46D5C /* Main.storyboard */,
 				30344B261A62EEB100E46D5C /* Images.xcassets */,
 				30344B281A62EEB100E46D5C /* LaunchScreen.xib */,
@@ -221,6 +224,7 @@
 				30344B221A62EEB100E46D5C /* ViewController.swift in Sources */,
 				30BD89381A6BDC0100809DE7 /* Player.swift in Sources */,
 				30BD893A1A6BEF6B00809DE7 /* Brain.swift in Sources */,
+				30BD893C1A6C015300809DE7 /* Price.swift in Sources */,
 				30344B201A62EEB100E46D5C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,9 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    // Player init
-    var player = Player()
-    
+    // Struct init
+    var player = Player(aBalance: 10, aIceCubes: 1, aLemons: 1)
+    var price = Prices()
     //vars
     
     var lemonsPurchased = 0
@@ -81,7 +81,7 @@ class ViewController: UIViewController {
         if player.balance >= 2 {
         lemonsPurchased += 1
         player.lemons += 1
-        player.balance -= 2
+        player.balance -= price.lemons
         updateMyView()
         }
         else {
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
         if lemonsPurchased >= 1 {
         lemonsPurchased -= 1
         player.lemons -= 1
-        player.balance += 2
+        player.balance += price.lemons
         updateMyView()
         }
         else {
@@ -106,7 +106,7 @@ class ViewController: UIViewController {
         if player.balance >= 1 {
             iceCubesPurchased += 1
             player.balance -= 1
-            player.iceCubes += 1
+            player.iceCubes += price.iceCubes
             updateMyView()
         }
         else {
@@ -120,7 +120,7 @@ class ViewController: UIViewController {
         if iceCubesPurchased >= 1 {
             iceCubesPurchased -= 1
             player.balance += 1
-            player.iceCubes -= 1
+            player.iceCubes -= price.iceCubes
             updateMyView()
         }
         else {
