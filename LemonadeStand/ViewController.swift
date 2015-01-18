@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     // Struct init
     var player = Player(aBalance: 10, aIceCubes: 1, aLemons: 1)
     var price = Prices()
+    var weather = Weather()
+    
     //vars
     
     var lemonsPurchased = 0
@@ -36,6 +38,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var lemonsToMixLabel: UILabel!
     @IBOutlet weak var iceCubesToMixLabel: UILabel!
     
+    @IBOutlet weak var weatherImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +77,11 @@ class ViewController: UIViewController {
         self.iceCubesToMixLabel.text = "\(iceCubesinTheMix)"
         self.lemonsToPurchaseLabel.text = "\(lemonsPurchased)"
         self.iceCubesToPurchaseLabel.text = "\(iceCubesPurchased)"
+        
+        //Weather
+        
+        self.weatherImage.image = UIImage(named: weather.weathers[weather.currentWeather])
+        
         
     }
     
@@ -221,28 +229,32 @@ class ViewController: UIViewController {
             println("invaild Ratio")
             myLemonadeType = "error"
         }
-        let numberOfCustomers = (Int(arc4random_uniform(UInt32(10)))) + 1
+        var numberOfCustomers = (Int(arc4random_uniform(UInt32(10)))) + 1
+            if weather.currentWeather == 0 {
+                if numberOfCustomers >= 4 {
+                    numberOfCustomers -= 3
+                }
+                else {
+                    numberOfCustomers = 1
+                }
+            }
+            else if weather.currentWeather == 2 {
+                    numberOfCustomers += 4
+                }
         let customerPreferences = LemonadeBrain.makePreferences(numberOfCustomers)
-        println("\(lemonToIceRatio)")
-        println("Number of Customers\(numberOfCustomers)")
-        println("\(customerPreferences)")
-        println("\(myLemonadeType)")
-        var sales = 0
+                      var sales = 0
             for i in 0...(customerPreferences.count - 1) {
                 if customerPreferences[i] == myLemonadeType {
                    sales += 1
-                    println("Customer Number \(i) purchased")
+                   
                 }
-                else {
-                    println("Customer Number \(i) did not purchase")
-                }
-                
             }
         lemonsInTheMix = 0
         iceCubesinTheMix = 0
         lemonsPurchased = 0
         iceCubesPurchased = 0
         player.balance += sales
+        weather.currentWeather = Int(arc4random_uniform(UInt32(3)))
         updateMyView()
         }
     
