@@ -146,6 +146,8 @@ class ViewController: UIViewController {
     
     @IBAction func lemonsMixPlusButtonPressed(sender: UIButton) {
         if player.lemons >= 1 {
+        // Lock players in, no selling of lemons after mixing
+        lemonsPurchased = 0
         lemonsInTheMix += 1
         player.lemons -= 1
         updateMyView()
@@ -157,6 +159,7 @@ class ViewController: UIViewController {
     
     @IBAction func lemonsMixMinusButtonPressed(sender: UIButton) {
         if lemonsInTheMix >= 1 {
+            lemonsPurchased = 0
             lemonsInTheMix -= 1
             player.lemons += 1
             updateMyView()
@@ -169,6 +172,8 @@ class ViewController: UIViewController {
     
     @IBAction func iceCubesMixPlusButtonPressed(sender: UIButton) {
         if player.iceCubes >= 1 {
+            // Lock player in to no sell any more icecubes
+            iceCubesPurchased = 0
             iceCubesinTheMix += 1
             player.iceCubes -= 1
             updateMyView()
@@ -181,6 +186,7 @@ class ViewController: UIViewController {
     
     @IBAction func iceCubesMixMinusButtonPressed(sender: UIButton) {
         if iceCubesinTheMix >= 1 {
+            iceCubesPurchased = 0
             iceCubesinTheMix -= 1
             player.iceCubes += 1
             updateMyView()
