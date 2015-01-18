@@ -61,6 +61,7 @@ class ViewController: UIViewController {
         self.iceCubesToMixLabel.text = "\(iceCubesinTheMix)"
         self.lemonsToPurchaseLabel.text = "\(lemonsPurchased)"
         self.iceCubesToPurchaseLabel.text = "\(iceCubesPurchased)"
+        
     }
     
     // FunctionForWarning
@@ -79,6 +80,7 @@ class ViewController: UIViewController {
     @IBAction func purchaseLemonPlusButtonPressed(sender: UIButton) {
         if player.balance >= 2 {
         lemonsPurchased += 1
+        player.lemons += 1
         player.balance -= 2
         updateMyView()
         }
@@ -91,6 +93,7 @@ class ViewController: UIViewController {
     @IBAction func purchaseLemonMinusButtonPressed(sender: UIButton) {
         if lemonsPurchased >= 1 {
         lemonsPurchased -= 1
+        player.lemons -= 1
         player.balance += 2
         updateMyView()
         }
@@ -100,34 +103,134 @@ class ViewController: UIViewController {
     }
     
     @IBAction func purchaseIceCubesPlusButtonPressed(sender: UIButton) {
+        if player.balance >= 1 {
+            iceCubesPurchased += 1
+            player.balance -= 1
+            player.iceCubes += 1
+            updateMyView()
+        }
+        else {
+        presentAWarning(message: "Insufficent Funds")
+        }
+        
+        
     }
     
     @IBAction func purchaseIceCubesMinusButtonPressed(sender: UIButton) {
+        if iceCubesPurchased >= 1 {
+            iceCubesPurchased -= 1
+            player.balance += 1
+            player.iceCubes -= 1
+            updateMyView()
+        }
+        else {
+            presentAWarning(message: "You have no Ice Cubes left to return")
+        }
+        
     }
     
     // Third Container Buttons
     
     @IBAction func lemonsMixPlusButtonPressed(sender: UIButton) {
+        if player.lemons >= 1 {
+        lemonsInTheMix += 1
+        player.lemons -= 1
+        updateMyView()
+        }
+        else {
+            presentAWarning(message: "There are no Lemons left")
+        }
     }
     
     @IBAction func lemonsMixMinusButtonPressed(sender: UIButton) {
+        if lemonsInTheMix >= 1 {
+            lemonsInTheMix -= 1
+            player.lemons += 1
+            updateMyView()
+        }
+        else {
+            presentAWarning(message: "There are no Lemons in the mix left")
+        }
     }
     
     
     @IBAction func iceCubesMixPlusButtonPressed(sender: UIButton) {
+        if player.iceCubes >= 1 {
+            iceCubesinTheMix += 1
+            player.iceCubes -= 1
+            updateMyView()
+        }
+        else {
+            presentAWarning(message: "There are no Ice Cubes left")
+        }
     }
     
     
     @IBAction func iceCubesMixMinusButtonPressed(sender: UIButton) {
+        if iceCubesinTheMix >= 1 {
+            iceCubesinTheMix -= 1
+            player.iceCubes += 1
+            updateMyView()
+        }
+        else {
+            presentAWarning(message: "There are no Ice Cubes in the mix left")
+        }
+
     }
     
     
     //fourth Container buttons
     
     @IBAction func startButtonPressed(sender: UIButton) {
+        
+        if lemonsInTheMix < 1 || iceCubesinTheMix < 1 {
+            presentAWarning(message: "There needs to be ice and lemons in your lemonade!")
+        }
+        else {
+        let lemonToIceRatio = Float(lemonsInTheMix) / Float(iceCubesinTheMix)
+        var myLemonadeType: String
+        if lemonToIceRatio > 1 {
+            myLemonadeType = "acidic"
+        }
+        else if lemonToIceRatio == 1 {
+            myLemonadeType = "equal parts"
+        }
+        else if lemonToIceRatio < 1 {
+            myLemonadeType = "diluted"
+        }
+        else {
+            println("invaild Ratio")
+            myLemonadeType = "error"
+        }
+        let numberOfCustomers = (Int(arc4random_uniform(UInt32(10)))) + 1
+        let customerPreferences = LemonadeBrain.makePreferences(numberOfCustomers)
+        println("\(lemonToIceRatio)")
+        println("Number of Customers\(numberOfCustomers)")
+        println("\(customerPreferences)")
+        println("\(myLemonadeType)")
+        var sales = 0
+            for i in 0...(customerPreferences.count - 1) {
+                if customerPreferences[i] == myLemonadeType {
+                   sales += 1
+                    println("Customer Number \(i) purchased")
+                }
+                else {
+                    println("Customer Number \(i) did not purchase")
+                }
+                
+            }
+        lemonsInTheMix = 0
+        iceCubesinTheMix = 0
+        lemonsPurchased = 0
+        iceCubesPurchased = 0
+        player.balance += sales
+        updateMyView()
+        }
+    
+        
+        
+        
     }
-    
-    
     
 }
 
