@@ -50,13 +50,26 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // Functions for View
+    // Function for ViewUpdate
     
     func updateMyView() {
         
         self.currentBalanceLabel.text = "$\(player.balance)"
-        self.currentIceLabel.text = "\(player.iceCubes)"
-        self.currentLemonsLabel.text = "\(player.lemons)"
+        
+        // Control Flow for Display for Lemon and Lemons and Ice Cube and Ice Cubes
+        if player.iceCubes == 1 {
+                self.currentIceLabel.text = "\(player.iceCubes) Ice Cube"
+            }
+            else {
+                self.currentIceLabel.text = "\(player.iceCubes) Ice Cubes"
+            }
+            if player.lemons == 1 {
+                self.currentLemonsLabel.text = "\(player.lemons) Lemon"
+            }
+            else {
+                self.currentLemonsLabel.text = "\(player.lemons) Lemons"
+            }
+        
         self.lemonsToMixLabel.text = "\(lemonsInTheMix)"
         self.iceCubesToMixLabel.text = "\(iceCubesinTheMix)"
         self.lemonsToPurchaseLabel.text = "\(lemonsPurchased)"
@@ -66,7 +79,7 @@ class ViewController: UIViewController {
     
     // FunctionForWarning
     
-    func presentAWarning(header: String = "Warning!", message:String) {
+    func presentAWarning(header: String = "Warning", message: String) {
         
     var alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
@@ -78,7 +91,7 @@ class ViewController: UIViewController {
     // second container Buttons
     
     @IBAction func purchaseLemonPlusButtonPressed(sender: UIButton) {
-        if player.balance >= 2 {
+        if player.balance >= price.lemons {
         lemonsPurchased += 1
         player.lemons += 1
         player.balance -= price.lemons
@@ -103,10 +116,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func purchaseIceCubesPlusButtonPressed(sender: UIButton) {
-        if player.balance >= 1 {
+        if player.balance >= price.iceCubes {
             iceCubesPurchased += 1
-            player.balance -= 1
-            player.iceCubes += price.iceCubes
+            player.balance -= price.iceCubes
+            player.iceCubes += 1
             updateMyView()
         }
         else {
@@ -119,8 +132,8 @@ class ViewController: UIViewController {
     @IBAction func purchaseIceCubesMinusButtonPressed(sender: UIButton) {
         if iceCubesPurchased >= 1 {
             iceCubesPurchased -= 1
-            player.balance += 1
-            player.iceCubes -= price.iceCubes
+            player.balance += price.iceCubes
+            player.iceCubes -= 1
             updateMyView()
         }
         else {
